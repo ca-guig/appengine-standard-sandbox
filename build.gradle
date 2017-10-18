@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+/* ****************************************************************************************************************** */
+
+description = 'This is my personal sandbox about Google App Engine Standard in Java 8 with Spring Boot'
+
+group = 'ca.guig.sandbox'
+version = 1.0
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+/* ****************************************************************************************************************** */
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+}
