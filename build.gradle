@@ -1,4 +1,5 @@
 plugins {
+    id 'org.springframework.boot' version '1.5.8.RELEASE'
     id 'java'
 }
 
@@ -18,6 +19,13 @@ repositories {
     mavenCentral()
 }
 
+configurations {
+    compile.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+}
+
 dependencies {
-    testCompile 'junit:junit:4.12'
+    // Spring Boot
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-jetty'
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
 }

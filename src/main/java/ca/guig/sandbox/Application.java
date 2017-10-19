@@ -1,9 +1,6 @@
 package ca.guig.sandbox;
 
-public class Application {
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-    public static void main(String[] arguments) {
-        System.out.println("Hello, World!");
-    }
-
-}
+@SpringBootApplication
+class Application {}

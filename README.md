@@ -8,3 +8,9 @@ This is my personal sandbox about Google App Engine Standard in Java 8 with Spri
 ```
 gradlew clean check
 ```
+
+### Running locally
+
+```
+gradlew bootRun
+```
