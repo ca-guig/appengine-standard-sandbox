@@ -57,7 +57,25 @@ bootRepackage {
 
 /* ****************************************************************************************************************** */
 
+war {
+    filesMatching('**/appengine-web.xml') {
+        expand(project: project)
+    }
+}
+
+/* ****************************************************************************************************************** */
+
 appengine {
+    run {
+        port = 8080
+
+        jvmFlags = ['-Dspring.profiles.active=local']
+
+        // For Remote Debugging
+        // jvmFlags += ['-Xdebug', '-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8000']
+
+    }
+
     deploy {
         project = googleCloudProject // Defined in gradle.properties
         version = 'v1'
