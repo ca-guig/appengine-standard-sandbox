@@ -1,14 +1,26 @@
-plugins {
-    id 'org.springframework.boot' version '1.5.8.RELEASE'
-    id 'java'
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.google.cloud.tools:appengine-gradle-plugin:1.3.3'
+    }
 }
 
 /* ****************************************************************************************************************** */
 
-description = 'This is my personal sandbox about Google App Engine Standard in Java 8 with Spring Boot'
+plugins {
+    id 'org.springframework.boot' version '1.5.8.RELEASE'
+    id 'java'
+    id 'war'
+}
 
-group = 'ca.guig.sandbox'
-version = 1.0
+apply plugin: 'com.google.cloud.tools.appengine'
+
+/* ****************************************************************************************************************** */
+
+description = 'This is my personal sandbox about Google App Engine Standard in Java 8 with Spring Boot'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -20,12 +32,34 @@ repositories {
 }
 
 configurations {
+    compile.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
     compile.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
 }
 
 dependencies {
     // Spring Boot
     compile 'org.springframework.boot:spring-boot-starter-web'
-    compile 'org.springframework.boot:spring-boot-starter-jetty'
+    providedCompile 'org.springframework.boot:spring-boot-starter-jetty'
     testCompile 'org.springframework.boot:spring-boot-starter-test'
+
+    // Logging
+    compile 'org.slf4j:slf4j-api'
+    compile 'org.slf4j:slf4j-jdk14'
+    compile 'org.slf4j:jcl-over-slf4j'
+    compile 'org.slf4j:log4j-over-slf4j'
+}
+
+/* ****************************************************************************************************************** */
+
+bootRepackage {
+    enabled = false
+}
+
+/* ****************************************************************************************************************** */
+
+appengine {
+    deploy {
+        project = googleCloudProject // Defined in gradle.properties
+        version = 'v1'
+    }
 }

@@ -12,5 +12,11 @@ gradlew clean check
 ### Running locally
 
 ```
-gradlew bootRun
+gradlew appengineRun
+```
+
+### Deploying on Google AppEngine
+
+```
+gradlew appengineDeploy
 ```
